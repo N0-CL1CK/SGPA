@@ -1,5 +1,4 @@
 # SGPA
 Sistema gerenciador de projetos aprovados
 
-![Badge](Módulos utilizados: ExpressJS, MySQL2 e Nodemon)
-a
+<p align="center"> 🔗 Módulos utilizados: ExpressJS, MySQL2 e Nodemon </p>
