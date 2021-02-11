@@ -1,5 +1,5 @@
 ## SGPA (Sistema gerenciador de projetos aprovados)
-<p align="center"> 🔗 Módulos utilizados: </p>
+🔗 Módulos utilizados:
 
 * ExpressJS 
 * EJS 
