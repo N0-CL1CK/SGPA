@@ -1,0 +1,20 @@
+body {
+    padding-top: 3.5rem;
+}
+
+footer {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+@media (max-height: 800px) {
+    #main {
+        min-height: 750px;
+    }
+
+    footer {
+        position: relative;
+    }
+}
