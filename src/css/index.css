@@ -1,5 +1,5 @@
 body {
-    padding-top: 3.5rem;
+    padding-top: 6rem;
 }
 
 footer {
@@ -9,7 +9,16 @@ footer {
     position: fixed;
 }
 
-@media (max-height: 800px) {
+
+.card{
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+}
+
+
+@media (max-height: 720px) {
     #main {
         min-height: 750px;
     }
