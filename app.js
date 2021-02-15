@@ -1,32 +1,49 @@
 // Importando módulos
-const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const express = require('express');
-const path = require('path');
+const cors = require('cors');
+
+const dbService = require('./src/js/dbService');
+const dotenv = require('dotenv');
 const app = express();
 
+dotenv.config();
 
-var port = process.env.PORT || 8080;
-
-
-// Arquivos estáticos
-//app.use(express.static('public'))
-//app.use('/css', express.static(__dirname, 'public/css'))
-
-
-// Set Engine Template
 app.set('view engine', 'ejs');
 
-app.use(expressLayouts);
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(__dirname + '/src/'))
+app.use(cors());
+app.use(express.json());
+app.use(express.static(__dirname + '/src/'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 //Abrindo a conexão do servidor
-app.listen(port, () => console.log(`[ONLINE] http://localhost:${port}/`));
+app.listen(process.env.PORT, () => {
+    console.log(`[ONLINE] http://localhost:${process.env.PORT}/`)
+});
 
 
 //Instanciando as requisições do servidor
 app.get('/', (_, res) => {
     res.render('pages/home');
 });
+
+app.get('/projetos', (_, res) => {
+    res.render('pages/consultar_projetos');
+});
+
+app.route('/projetos/novo')
+    .get((_, res) => {
+        
+        res.render('pages/add_projeto');
+
+    })
+    .post((req, res) => {
+        const db = dbService.getDbServiceInstance();
+
+        const result = db.getAllData();
+
+        result
+            .then(data => res.json({data : data}))
+            .catch(err => console.log(err));
+    });
