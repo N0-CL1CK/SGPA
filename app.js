@@ -28,22 +28,29 @@ app.get('/', (_, res) => {
     res.render('pages/home');
 });
 
+app.get('/projetos/getAll', (_, res) => {
+    
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllData();
+    
+    result
+    .then(data => {
+        res.json({data: data});
+    })
+    .catch(err => console.log(err));
+});
+
+app.get('/usuarios', (_, res) => {
+    res.render('pages/consultas/consultar_usuarios');
+});
+
 app.get('/projetos', (_, res) => {
-    res.render('pages/consultar_projetos');
+    res.render('pages/consultas/consultar_projetos');
 });
 
 app.route('/projetos/novo')
     .get((_, res) => {
-        
-        res.render('pages/add_projeto');
+        res.render('pages/cadastros/cadastrar_projetos');
 
     })
-    .post((req, res) => {
-        const db = dbService.getDbServiceInstance();
-
-        const result = db.getAllData();
-
-        result
-            .then(data => res.json({data : data}))
-            .catch(err => console.log(err));
-    });
+    .post((req, res) => {});
