@@ -16,7 +16,7 @@
                             Ferramentas
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownFerramentas">
-                            <li><a href="#" class="dropdown-item">Consultar Funcionários</a></li>
+                            <li><a href="/usuarios" class="dropdown-item">Consultar Usuários</a></li>
                             <li><a href="/projetos" class="dropdown-item">Consultar Projetos</a></li>
                         </ul>
                     </li>
@@ -29,4 +29,46 @@
             </div>
         </div>
     </nav>
+
+    <div id="modalFade" class="modal fade" tabindex="-1" aria-labelledby="title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card">
+                <div class="modal-header card-header">
+                    <h3 class="h3 mb-3 font-weight-normal" id="title">Log in</h3>	
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body card-body">
+                    <form class="form-signin">
+                        <div class="mb-3">
+                            <label for="inputEmail" class="sr-only">Email</label>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                                </div>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Digite seu email" required autofocus>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="sr-only">Senha</label>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+                                </div>
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Digite sua senha" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="check-remember" value="remember">
+                            <label class="form-check-label" for="check-remember">Lembrar senha</label>
+                        </div>
+                        
+                      </form>
+                </div>
+                <div class="modal-footer card-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success btn-block">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
