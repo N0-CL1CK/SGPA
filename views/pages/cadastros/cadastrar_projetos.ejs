@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="../public/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../public/icons/font/bootstrap-icons.css">
         
+        
     </head>
     <body>
         <%- include('../../statics/header') %>
@@ -19,13 +20,177 @@
         <main>
             <div id="main">
                 <div class="container">
-                    <div class="bg-light p-5 rounded m-5">
-                        <h1 class="display-6">Cadastrar um novo projeto!</h1>
-                        <hr class="my-4">
-                        <p class="text-justify">
-                            O sistema de gerenciamento de editais aprovados está em fase
-                            de desenvolvimento pela equipe Amendoim, espero que goste! 
-                        </p>
+                    <div class="form-group">
+                        <h1 class="display-6">Informações sobre o Projeto</h1>
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-12 col-lg-6 mb-3">
+                                    <label for="tituloDoProjeto" class="form-label">Título do Projeto</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="tituloDoProjeto" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="form-group col-12 col-lg-3 mb-3">
+                                    <label for="duracao" class="form-label">Duração</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="duracao" class="form-control" required>
+                                        <span class="input-group-text">horas</span>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="form-group col-12 col-lg-3 mb-3">
+                                    <label for="valTaxa" class="form-label">Valor de taxa de bancada</label>
+                                    <div class="input-group form-group">
+                                        <span class="input-group-text">R$</span>
+                                        <input type="text" id="valTaxa" class="form-control" required>
+                                        <span class="input-group-text">,00</span>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="form-group col-lg-4 mb-3">
+                                    <label for="numEdital" class="form-label">Número do edital</label>
+                                    <input type="text" id="numEdital" class="form-control" required>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="form-group col-lg-5 mb-3">
+                                    <label for="areaConhecimento" class="form-label">Área de conhecimento</label>
+                                    <select id="areaConhecimento" class="form-control form-select" required>
+                                        <option selected></option>
+                                        <option value="1">Ciências Agrárias</option>
+                                        <option value="2">Ciências Biológicas</option>
+                                        <option value="3">Ciências Exatas e da Terra</option>
+                                        <option value="4">Engenharias</option>
+                                        <option value="5">Ciências Humanas</option>
+                                        <option value="6">Ciências Sociais Aplicadas</option>
+                                        <option value="7">Lingüística, Letras e Artes</option>
+                                    </select>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-3 mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select id="status" class="form-select" required>
+                                        <option selected></option>
+                                        <option value="1">Finalizado</option>
+                                        <option value="2">Em andamento</option>
+                                        <option value="3">Não concluído</option>
+                                    </select>
+                                    <div class="needs-validation"></div>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <h1 class="display-6">
+                                Coordenador
+                            </h1>
+                            <div class="row">
+                                <div class="col-lg-4 mb-3">
+                                    <label for="nomeCoordenador" class="form-label">Nome completo</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="nomeCoordenador" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-5 mb-3">
+                                    <label for="numRegCoordenador" class="form-label">Número de registro funcional</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="numRegCoordenador" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-3 mb-3">
+                                    <label for="cargoCoordenador" class="form-label">Cargo</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="cargoCoordenador" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <h1 class="display-6">
+                                Servidor colaborador
+                            </h1>    
+                            <div class="row">
+                                <div class="col-lg-4 mb-3">
+                                    <label for="nomeServidor" class="form-label">Nome completo</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="nomeServidor" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-5 mb-3">
+                                    <label for="numRegServidor" class="form-label">Número de registro funcional</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="numRegServidor" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-3 mb-3">
+                                    <label for="cargoServidor" class="form-label">Cargo</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="cargoServidor" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <h1 class="display-6">
+                                Discente colaborador
+                            </h1>
+                            <div class="row">
+                                <div class="col-lg-4 mb-3">
+                                    <label for="nomeDiscColabodarador" class="form-label">Nome completo</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="nomeDiscColabodarador" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-5 mb-3">
+                                    <label for="numRegDiscColab" class="form-label">Número de registro acadêmico</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="numRegDiscColab" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-3 mb-3">
+                                    <label for="cursoDiscColab" class="form-label">Curso</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="cursoDiscColab" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                            </div>
+                            <br><br><br>
+                            <h1 class="display-6">
+                                Discente bolsista
+                            </h1>
+                            <div class="row">
+                                <div class="col-lg-4 mb-3">
+                                    <label for="nomeDiscBolsista" class="form-label">Nome completo</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="nomeDiscBolsista" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-5 mb-3">
+                                    <label for="numRegDiscBols" class="form-label">Número de registro acadêmico</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="numRegDiscBols" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                                <div class="col-lg-3 mb-3">
+                                    <label for="cursoDiscBols" class="form-label">Curso</label>
+                                    <div class="input-group form-group">
+                                        <input type="text" id="cursoDiscBols" class="form-control" required>
+                                    </div>
+                                    <div class="needs-validation"></div>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="d-flex flex-row-reverse bd-highlight">
+                                <button id="btn-cadastrar-projeto" type="submit" class="btn btn-outline-success">Cadastrar Projeto</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -37,6 +202,7 @@
                 <p><a class="text-white" target="_blank" href="https://wa.me/5569992019339?text=Olá%2C+equipe+amendoim!" style="text-decoration: none;"> (69) 9 9201-9339</a></p>
             </div>
             
+            <script src="/js/cadastros/cadastrar_projetos.js"></script>
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
             <script type="text/javascript" src="../public/js/bootstrap.min.js"></script>

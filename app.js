@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const dbService = require('./src/js/dbService');
 const dotenv = require('dotenv');
+const { response } = require('express');
 const app = express();
 
 dotenv.config();
@@ -53,4 +54,42 @@ app.route('/projetos/novo')
         res.render('pages/cadastros/cadastrar_projetos');
 
     })
-    .post((req, res) => {});
+    .post((req, res) => {
+        const {titulo, duracao, val_taxa, num_edital, area_conhecimento, stts} = req.body,
+              {nomeCoord, regFuncCoord, cargoCoord} = req.body,
+              {nomeServ, regFuncServ, cargoServ} = req.body,
+              {nomeDiscColab, regAcadDiscColab, cursoDiscColab} = req.body,
+              {nomeDiscBols, regAcadDiscBols, cursoDiscBols} = req.body;
+
+        const db  = dbService.getDbServiceInstance();
+        const result_projetos = db.insertNewProject(titulo, duracao, val_taxa, num_edital, area_conhecimento, stts);
+        const result_coord = db.insertNewFuncionario(nomeCoord, regFuncCoord, cargoCoord, 1); //tipo 1 = coordenador | tipo 2 = servidor colaborador
+        const result_serv_colab = db.insertNewFuncionario(nomeServ, regFuncServ, cargoServ, 2); //tipo 1 = coordenador | tipo 2 = servidor colaborador
+        const result_disc_colab = db.insertNewDiscente(nomeDiscColab, regAcadDiscColab, cursoDiscColab, 1); //tipo 1 = colaborador | tipo 2 = bolsista
+        const result_disc_bols = db.insertNewDiscente(nomeDiscBols, regAcadDiscBols, cursoDiscBols, 2); //tipo 1 = colaborador | tipo 2 = bolsista
+
+        result_projetos
+        .then(dados_projeto => {
+            result_coord
+            .then(dados_coord => {
+                const result_projUserCoord = db.insertNewProjetoUser(dados_projeto.insertId, dados_coord.insertId, 1); //tipo 1 = coordenador | tipo 2 = servidor colaborador | tipo 3 = discente colaborador | tipo 4 = discente bolsista
+                result_serv_colab
+                .then(dados_servidor_colaborador => {
+                    const result_projUserServ = db.insertNewProjetoUser(dados_projeto.insertId, dados_servidor_colaborador.insertId, 2); //tipo 1 = coordenador | tipo 2 = servidor colaborador | tipo 3 = discente colaborador | tipo 4 = discente bolsista
+                    result_disc_colab
+                    .then(dados_discente_colaborador => {
+                        const result_projUserColab = db.insertNewProjetoUser(dados_projeto.insertId, dados_discente_colaborador.insertId, 3); //tipo 1 = coordenador | tipo 2 = servidor colaborador | tipo 3 = discente colaborador | tipo 4 = discente bolsista
+                        result_disc_bols
+                        .then(dados_discente_bolsista => {
+                            const result_projUserBols = db.insertNewProjetoUser(dados_projeto.insertId, dados_discente_bolsista.insertId, 4); //tipo 1 = coordenador | tipo 2 = servidor colaborador | tipo 3 = discente colaborador | tipo 4 = discente bolsista
+                        })
+                        .catch(err => console.error(err));
+                    })
+                    .catch(err => console.error(err));
+                })
+                .catch(err => console.error(err));
+            })
+            .catch(err => console.error(err));
+        })
+        .catch(err => console.error(err));
+    });
