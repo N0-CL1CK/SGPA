@@ -1,13 +1,25 @@
 const loadHTMLTable = (data) => {
     const table = document.querySelector('table tbody');
 
-    console.log(data);
     if (data.length === 0) {
         table.innerHTML = "<tr><td class='no-data text-center' colspan='3'>Nenhum projeto cadastrado</td></tr>";
         return;
     }
 
     let tableHtml = "";
+    data.forEach (function ({stts, titulo, nome}) {
+        if (stts == 1) stts = "Finalizado";
+        else if (stts == 2) stts = "Em andamento";
+        else if (stts == 3) stts = "Não concluído";
+        
+        tableHtml += "<tr>";
+        tableHtml += `<td>${stts}</td>`;
+        tableHtml += `<td>${titulo}</td>`;
+        tableHtml += `<td>${nome}</td>`;
+        tableHtml += "</tr>";
+    });
+
+    table.innerHTML = tableHtml;
 
 }
 
@@ -38,7 +50,3 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch((err) => console.error(err));
 });
-
-window.onload = () => {
-    
-}
